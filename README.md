@@ -1,201 +1,288 @@
-# AI-Powered Facebook Messenger Bot — n8n Automation System
+<!-- 
+SEO Keywords: n8n Facebook Messenger bot, AI chatbot n8n workflow, Facebook page automation, 
+Gemini AI Messenger bot, Groq chatbot, AI customer support automation, human handoff chatbot,
+n8n workflow automation Bangladesh, Facebook Graph API bot, bilingual chatbot Bangla English,
+AI agent n8n, conversational AI business, AutomateIQ Labs, messenger automation n8n
+-->
 
-**Production-grade, dual-AI Facebook Messenger automation built on n8n, Google Gemini, and Groq — handling real customer conversations end-to-end, escalating to a human when needed, and automatically resuming after handoff.**
+<div align="center">
 
-[![Automation](https://img.shields.io/badge/Automation-n8n-EA4B71?style=flat-square)](https://n8n.io)
-[![AI Model](https://img.shields.io/badge/Primary%20AI-Gemini%202.5%20Flash-4285F4?style=flat-square)](https://ai.google.dev)
-[![Fallback AI](https://img.shields.io/badge/Fallback%20AI-Groq%20Llama%203.3%2070B-F55036?style=flat-square)](https://groq.com)
-[![Platform](https://img.shields.io/badge/Platform-Meta%20Messenger%20API-0866FF?style=flat-square)](https://developers.facebook.com/docs/messenger-platform)
-[![Status](https://img.shields.io/badge/Status-Production-brightgreen?style=flat-square)]()
-[![Maintained by](https://img.shields.io/badge/Maintained%20by-AutomateIQ%20Labs-black?style=flat-square)](https://www.facebook.com/automateiq.labs/)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=AI%20Facebook%20Messenger%20Bot&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35&desc=Production-Grade%20n8n%20Chatbot%20%7C%20Dual-AI%20%7C%20Human%20Handoff%20%7C%20Live%20on%20Facebook&descAlignY=57&descAlign=50" width="100%"/>
 
-> 📌 **This is a documentation / case-study repository.** It showcases the architecture, workflow design, and decision logic of a live AI Messenger bot through screenshots and technical write-up. Source code is not published — see [Why No Source Code](#why-no-source-code-is-public) below.
+[![n8n](https://img.shields.io/badge/Automation-n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io)
+[![Gemini](https://img.shields.io/badge/Primary_AI-Gemini_2.5_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
+[![Groq](https://img.shields.io/badge/Fallback_AI-Groq_Llama_3.3_70B-F55036?style=for-the-badge)](https://groq.com)
+[![Meta](https://img.shields.io/badge/Platform-Meta_Messenger_API-0866FF?style=for-the-badge&logo=facebook&logoColor=white)](https://developers.facebook.com/docs/messenger-platform)
+[![Status](https://img.shields.io/badge/Status-Production_Live-brightgreen?style=for-the-badge)]()
+[![Self Hosted](https://img.shields.io/badge/Hosting-Self_Hosted-00B894?style=for-the-badge&logo=amazonaws&logoColor=white)]()
+[![Made by](https://img.shields.io/badge/Made_by-AutomateIQ_Labs-black?style=for-the-badge)](https://www.facebook.com/automateiq.labs/)
 
----
+<br/>
 
-## Table of Contents
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&pause=1000&color=00D4FF&center=true&vCenter=true&random=false&width=700&lines=AI+Messenger+Bot+%7C+24%2F7+Customer+Support+%F0%9F%A4%96;Dual-AI+Brain+%7C+Gemini+%2B+Groq+%E2%9A%99%EF%B8%8F;Auto+Language+Detection+%7C+Bangla+%2B+English+%F0%9F%8C%90;Human+Handoff+%2B+Auto-Resume+System+%F0%9F%A4%9D;28+Nodes+%7C+Self-Hosted+%7C+%240%2Fmonth+%F0%9F%9A%80)](https://git.io/typing-svg)
 
-- [Overview](#overview)
-- [The Problem It Solves](#the-problem-it-solves)
-- [System Architecture](#system-architecture)
-- [How It Works](#how-it-works)
-- [Dual-AI Brain Architecture](#dual-ai-brain-architecture)
-- [Human Handoff & Auto-Resume System](#human-handoff--auto-resume-system)
-- [Tech Stack](#tech-stack)
-- [Key Features](#key-features)
-- [White-Label Deployment Model](#white-label-deployment-model)
-- [Capacity & Results](#capacity--results)
-- [FAQ](#faq)
-- [Why No Source Code Is Public](#why-no-source-code-is-public)
-- [Connect](#connect)
+<br/>
+
+> **A production-grade, dual-AI Facebook Messenger automation built on self-hosted n8n — handling real customer conversations 24/7, escalating to a human when needed, and automatically resuming after handoff.**
+
+</div>
 
 ---
 
-## Overview
+## 🎬 Watch It in Action
 
-This repository documents an **AI Messenger bot for Facebook Pages** — a production automation system that answers customer messages instantly, in the customer's own language, using a live knowledge base instead of scripted replies. It runs on a **28-node n8n workflow** with two separate AI agents working in sequence — one to reply, one to silently decide whether a human needs to step in — plus a built-in **human handoff system** that pauses the bot for a business owner to reply personally, then resumes automatically.
+> See the live AI Messenger bot handling real customer conversations.
 
-It was designed as a **white-label AI automation template** — one workflow, redeployable across multiple Facebook Business Pages by swapping only the knowledge base and business identity.
+<div align="center">
 
-**Core keywords:** AI Messenger bot, n8n workflow automation, Facebook Graph API chatbot, Gemini AI agent, Groq Llama fallback, conversational AI for business, customer service automation, AI human handoff chatbot, lead detection AI, Messenger automation Bangladesh, AI automation agency Bangladesh.
+| Video | Description | Watch |
+|:---:|:---:|:---:|
+| 🔴 **Live Demo** | Real customer messages — bot replies in real time | [▶ Watch Live](https://www.facebook.com/share/v/197bCWF631/) |
+| 🧠 **Full System Explanation** | Complete guide — architecture, workflow, how it works | [▶ Watch Overview](https://www.facebook.com/share/v/1Czv3gtbWv/) |
 
-## The Problem It Solves
+</div>
 
-Small and medium businesses lose leads every day because nobody is online to reply outside business hours. A customer who messages at 3 AM and gets silence usually doesn't come back. This system closes that gap:
+---
 
-- Instant, accurate replies — 24/7, no human on standby
-- Replies pulled from real business data (Google Docs knowledge base), not hardcoded FAQ scripts
-- Automatic language detection (Bangla / English) with no manual configuration
-- Serious inquiries are flagged and escalated to a human — casual messages are not
-- When a human does step in, the AI steps back automatically instead of talking over them
+## 📌 What Is This?
 
-## System Architecture
+**AI Facebook Messenger Bot** is a fully automated, production-ready customer support system for Facebook Business Pages. Built on **self-hosted n8n** with a **28-node workflow**, it uses two AI agents working in sequence to reply to customers, detect escalation needs, and hand off to a human — automatically.
+
+**No scripts. No hardcoded replies. Just AI reading your live business knowledge base and responding like a human.**
+
+Built by **[Muhammad Antor](https://www.linkedin.com/in/muhammad-antor)** | [AutomateIQ Labs](https://www.facebook.com/automateiq.labs/) 🇧🇩
+
+---
+
+## ❓ The Problem It Solves
+
+Businesses lose customers every day because **no one is online to reply at 3 AM**.
+
+A customer who messages and gets silence usually doesn't come back.
+
+This system closes that gap permanently:
+
+- ⚡ Instant, accurate replies — **24/7**, no human on standby
+- 📚 Replies from **live business data** (Google Docs KB) — not hardcoded FAQ scripts
+- 🌐 **Auto language detection** — Bangla or English, per message, zero manual setup
+- 🚨 **Smart escalation** — serious inquiries flagged to human; casual messages handled alone
+- 🤝 **Human handoff** — when admin takes over, AI steps back automatically
+- 🔁 **Auto-resume** — if admin doesn't reply within 24h, AI picks the conversation back up
+
+---
+
+## 🏗️ System Architecture
+
+### High-Level Flow
 
 ```mermaid
 flowchart TD
-    A[Facebook Messenger User] --> B[Meta Webhook]
+    A[📱 Facebook Messenger User] --> B[Meta Webhook]
     B --> C[n8n Webhook Trigger]
     C --> D[Input Data Extraction]
-    D --> E{Is this user in an active human-handoff window?}
-    E -->|Yes| P[Bot stays silent — admin is handling it]
+    D --> E{Active Human-Handoff Window?}
+    E -->|Yes| P[🤫 Bot Stays Silent — Admin Handling]
     E -->|No| F{Data Firewall: Text or Media?}
-    F -->|Media/Sticker| G[Send Warning Reply]
+    F -->|Media / Sticker| G[⚠️ Graceful Fallback Reply]
     F -->|Text| H{Casual Message Filter}
-    H -->|Casual: hi/hello/ok| I[Fixed Reply Template]
-    H -->|Genuine Query| J[AI Brain 1: Response Engine]
-    J -->|Reads| K[(Knowledge Base — Google Docs)]
-    J --> L[Reply Sent via Graph API]
-    L --> M[AI Brain 2: Conversation Analyst]
+    H -->|hi / hello / ok| I[📝 Fixed Branded Template]
+    H -->|Genuine Query| J[🧠 AI Brain 1 — Response Engine]
+    J -->|Reads| K[(📚 Knowledge Base — Google Docs)]
+    J --> L[✅ Reply Sent via Graph API]
+    L --> M[🔍 AI Brain 2 — Conversation Analyst]
     M --> N{Decision}
-    N -->|NOTIFY_ADMIN| O[Admin Alert via Messenger + 24h Handoff Window Opens]
-    N -->|MONITOR / NO_ACTION| Q[Session Ends]
+    N -->|NOTIFY_ADMIN| O[🔔 Admin Alert + 24h Handoff Window]
+    N -->|MONITOR / NO_ACTION| Q[✅ Session Ends]
 ```
 
-📸 *Full n8n canvas screenshot:*
+### Architecture Overview
 
-`assets/screenshots/workflow-overview.png`
-
-*(Replace this file with your own exported workflow screenshot — see [assets/screenshots](assets/screenshots))*
-
-## How It Works
-
-1. **Webhook receives** the incoming Messenger event from Meta's Graph API
-2. **Data extraction** pulls `user_message`, `sender_id`, `recipient_id`, and `page_id`
-3. **Handoff check** looks up whether this user is currently inside an active human-handoff window — if so, the bot stays silent so the admin can reply personally without interference
-4. **Data firewall** filters out non-text input (images, stickers, voice notes) with a polite fallback message
-5. **Casual-message filter** short-circuits greetings (`hi`, `hello`, `হাই`, `ok`) into a fixed branded reply — saving AI quota for real queries
-6. **AI Brain 1** (Gemini 2.5 Flash, with Groq Llama 3.3 70B as automatic fallback) reads the knowledge base and generates a contextual, language-matched reply, appending an invisible routing tag
-7. **Reply is sent** to the user instantly via the Graph API
-8. **AI Brain 2** re-reads the full session and independently decides: `NOTIFY_ADMIN`, `MONITOR`, or `NO_ACTION`
-9. **Admin is notified on Messenger** only when a decision genuinely warrants it — not for every message
-10. **Handoff window opens automatically** for 24 hours, during which the bot pauses for that user; if the admin doesn't reply in time, the bot resumes the conversation on its own
-
-## Dual-AI Brain Architecture
-
-The core design decision behind this system: **one AI model should not both talk to the customer and judge the conversation.** Splitting those responsibilities into two agents removes bias and keeps notifications meaningful.
-
-| | AI Brain 1 — Response Engine | AI Brain 2 — Conversation Analyst |
-|---|---|---|
-| **Job** | Generate the customer-facing reply | Decide if a human needs to intervene |
-| **Input** | User message + Knowledge Base | Full session history + latest reply |
-| **Output** | Natural-language reply + hidden tag | Structured JSON decision |
-| **Runs** | Once per message | Once per message, after the reply is sent |
-| **Visible to user** | Yes | No — fully silent |
-
-This separation means the customer never sees a robotic "let me connect you to a human" fallback — the analyst layer handles that decision quietly in the background.
-
-## Human Handoff & Auto-Resume System
-
-A dedicated subsystem tracks, per user, whether a human admin is currently expected to be handling the conversation:
-
-- When AI Brain 2 decides `NOTIFY_ADMIN`, the admin gets a Messenger alert **with a clear 24-hour reply deadline**, and the user gets an automatic confirmation that their message has been forwarded to a human
-- For the next 24 hours, the AI bot goes quiet for that specific user — so the admin's manual reply is never talked over or duplicated by the AI
-- If the admin doesn't respond within the window, the AI **automatically resumes** the conversation, so no customer is ever left waiting indefinitely because of a missed notification
-
-This turns the bot from a simple auto-responder into a proper **AI + human hybrid support system**, where the AI covers the busy hours and quietly gets out of the way the moment a person takes over.
-
-## Tech Stack
-
-| Layer | Technology |
+| Layer | What Happens |
 |---|---|
-| Automation Engine | [n8n](https://n8n.io) (self-hosted) |
-| Messaging Platform | Meta Facebook Graph API v25.0 |
-| Primary AI Model | Google Gemini 2.5 Flash |
-| Fallback AI Model | Groq — Llama 3.3 70B |
-| Knowledge Base | Google Docs (structured, AI-readable) |
-| Handoff State Tracking | Google Sheets |
-| Hosting | AWS EC2 (Ubuntu 22.04) |
-| Reverse Proxy / SSL | Nginx + Let's Encrypt (Certbot) |
+| **Input** | Meta webhook fires on every Messenger event |
+| **Handoff Check** | Is this user in an active human session? → Bot pauses if yes |
+| **Data Firewall** | Non-text (images, stickers, voice) → polite fallback |
+| **Casual Filter** | Greetings short-circuit to a fixed template, saving AI quota |
+| **AI Brain 1** | Gemini reads KB → generates reply → sends to user via Graph API |
+| **AI Brain 2** | Reads full session → outputs JSON decision: NOTIFY / MONITOR / NO_ACTION |
+| **Admin Alert** | Messenger notification + 24h handoff window opens |
+| **Auto-Resume** | If admin doesn't reply in 24h → AI resumes automatically |
 
-## Key Features
-
-- 🌐 Automatic bilingual language detection (Bangla / English) — no manual switch
-- 🧠 Live knowledge-base retrieval instead of static/hardcoded replies
-- 🏷️ Hidden intent tagging system (`[LEAD_DETECTED]`, `[ADMIN_NEEDED]`, `[OFF_TOPIC]`) invisible to the end user
-- 🤝 Human handoff with automatic 24-hour auto-resume — the AI never talks over a human agent
-- 🔁 Automatic AI model fallback — the bot never goes silent if one provider rate-limits
-- 🧵 Per-user session memory for context-aware replies
-- 🔔 Smart, de-duplicated admin notifications with a built-in reply deadline
-- 🧱 Media/sticker firewall with a graceful fallback response
-- 💸 $0/month infrastructure cost using free-tier services throughout
-
-## White-Label Deployment Model
-
-This workflow was built to be **redeployed for new clients** by changing only a handful of things:
-
-| Changes per client | Stays identical |
-|---|---|
-| Knowledge Base document | Full n8n workflow (28 nodes) |
-| Fixed reply templates & branding | AI Brain 1 & Brain 2 prompt logic |
-| Page Access Token | Message filtering & routing rules |
-| Admin Messenger recipient ID | Human handoff / auto-resume logic |
-| Handoff-tracking sheet (own copy per client) | — |
-
-## Capacity & Results
-
-- **Rate limit headroom:** thousands of AI requests/day combined (Gemini + Groq free tiers), comfortably covering typical small-business Messenger volume
-- **Response latency:** sub-5-second reply time from message receipt to delivery
-- **Operating cost:** $0/month (fully within free-tier limits across all services)
-- **Live status:** actively developed and tested against real-world conversation scenarios ahead of full production rollout on a business Facebook Page
-
-## FAQ
-
-**What AI models power this Messenger bot?**
-Google Gemini 2.5 Flash is the primary model, with Groq's Llama 3.3 70B running as an automatic fallback so replies never stop if one provider is rate-limited.
-
-**How does the bot decide when to escalate to a human?**
-A second AI agent ("AI Brain 2") reads the full conversation after every exchange and outputs a structured decision — `NOTIFY_ADMIN`, `MONITOR`, or `NO_ACTION` — independently of the reply-generating agent.
-
-**What happens after the bot escalates to a human?**
-The admin gets a Messenger alert with a 24-hour reply deadline, and the AI automatically pauses for that user so it doesn't talk over the human agent. If the admin doesn't reply within 24 hours, the AI automatically resumes the conversation.
-
-**What automation platform is this built on?**
-[n8n](https://n8n.io), a self-hosted workflow automation engine, using a 28-node pipeline connected to the Meta Facebook Graph API, Google Gemini, Groq, Google Docs, and Google Sheets.
-
-**Can this system be adapted for other businesses or Facebook Pages?**
-Yes — it was designed as a white-label template. Only the knowledge base, branding, and admin contact change; the workflow, AI prompts, and routing logic stay the same.
-
-**Does this bot support languages other than English?**
-Yes. It auto-detects the customer's language (currently Bangla and English) per message and replies in kind, without any manual configuration.
-
-**Is this a chatbot builder / SaaS product?**
-No — this is a custom-built automation system deployed for a specific business, documented here as a technical case study.
-
-## Why No Source Code Is Public
-
-This repository intentionally contains **no workflow export or source code**. The n8n workflow, system prompts, and knowledge base structure were built as commercial, client-deployable IP for [AutomateIQ Labs](https://www.facebook.com/automateiq.labs/), and are not open-sourced. What you'll find here is the architecture, decision logic, and a screenshot of the live system for portfolio and case-study purposes.
-
-If you're a business owner or agency interested in a similar AI Messenger automation system for your own Facebook Page — with human handoff built in — reach out via the contact details below.
-
-## Connect
-
-**Muhammad Antor** — AI Automation Builder, Bangladesh 🇧🇩
-
-- LinkedIn: [linkedin.com/in/muhammad-antor](https://www.linkedin.com/in/muhammad-antor)
-- Facebook (AutomateIQ Labs): [facebook.com/automateiq.labs](https://www.facebook.com/automateiq.labs/)
-- Instagram: [instagram.com/automateiq.labs](https://www.instagram.com/automateiq.labs/)
-- GitHub: [github.com/muhammadantor](https://github.com/muhammadantor)
+**Total: 28 nodes · 2 AI agents · 1 self-hosted n8n instance**
 
 ---
 
-<sub>Documentation repository by AutomateIQ Labs — "Automate Smarter with AI". Screenshots and architecture shared for portfolio purposes; underlying implementation is proprietary client work.</sub>
+## 🧠 Dual-AI Brain Architecture
+
+The core design decision: **one AI should not both talk to customers AND judge the conversation.**
+
+Splitting into two agents removes bias and keeps admin notifications meaningful — not noisy.
+
+| | 🧠 AI Brain 1 — Response Engine | 🔍 AI Brain 2 — Conversation Analyst |
+|---|---|---|
+| **Job** | Generate the customer-facing reply | Decide if a human needs to intervene |
+| **Input** | User message + Knowledge Base | Full session history + latest reply |
+| **Output** | Natural-language reply + hidden intent tag | Structured JSON decision |
+| **Runs** | Once per message | Once per message, after reply is sent |
+| **Visible to user** | ✅ Yes | ❌ No — fully silent |
+| **Model** | Gemini 2.5 Flash (primary) | Groq Llama 3.3 70B (fallback) |
+
+> Hidden intent tags like `[LEAD_DETECTED]`, `[ADMIN_NEEDED]`, `[OFF_TOPIC]` are embedded in replies — invisible to the customer, readable by AI Brain 2.
+
+---
+
+## 🤝 Human Handoff & Auto-Resume System
+
+```
+Customer sends urgent / frustrated message
+        ↓
+AI Brain 2 → NOTIFY_ADMIN
+        ↓
+Admin gets Messenger alert with 24h deadline
+        ↓
+AI goes SILENT for this specific user
+        ↓
+Admin replies manually → customer gets personal response
+        ↓
+24h window expires → AI AUTOMATICALLY RESUMES
+(or admin doesn't reply → AI picks it up anyway)
+```
+
+This turns the bot from a simple auto-responder into a **true AI + human hybrid support system** — the AI handles volume, humans handle relationships.
+
+---
+
+## ⭐ Key Features
+
+| Feature | Detail |
+|---|---|
+| 🌐 **Bilingual Auto-Detection** | Detects Bangla or English per message — replies in the same language |
+| 📚 **Live Knowledge Base** | Reads from Google Docs in real time — update your KB, bot replies change instantly |
+| 🏷️ **Hidden Intent Tagging** | `[LEAD_DETECTED]` `[ADMIN_NEEDED]` `[OFF_TOPIC]` — invisible routing signals |
+| 🤝 **Human Handoff** | Admin takes over → AI steps back silently for 24h |
+| 🔁 **Auto-Resume** | 24h deadline passed with no admin reply → AI picks conversation back up |
+| 🔔 **Smart Notifications** | Admin alerted only when it genuinely matters — no alert spam |
+| 🛡️ **Media Firewall** | Images, stickers, voice notes → graceful fallback reply |
+| ⚡ **Casual Message Filter** | `hi` / `hello` / `হাই` → fixed template, zero AI cost |
+| 🔄 **AI Fallback** | Gemini rate-limited? Groq takes over instantly — bot never goes silent |
+| 🧵 **Session Memory** | Per-user context for coherent multi-turn conversations |
+| 💰 **$0/month** | Runs entirely on free tiers — Gemini + Groq + Sheets + Docs |
+| 🏠 **Self-Hosted** | Your data never leaves your infrastructure |
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| ⚙️ Automation Engine | [n8n](https://n8n.io) — self-hosted, Docker |
+| 💬 Messaging Platform | Meta Facebook Graph API v25.0 |
+| 🧠 Primary AI | Google Gemini 2.5 Flash |
+| 🔁 Fallback AI | Groq — Llama 3.3 70B |
+| 📚 Knowledge Base | Google Docs (structured, AI-readable) |
+| 📊 Handoff Tracking | Google Sheets |
+| ☁️ Server Hosting | AWS EC2 (Ubuntu 22.04) |
+| 🔐 SSL / Reverse Proxy | Nginx + Let's Encrypt (Certbot) |
+
+---
+
+## 📦 White-Label Deployment Model
+
+This workflow was designed to be **redeployed for multiple clients** by changing only a handful of values:
+
+| Changes Per Client | Stays Identical |
+|---|---|
+| Knowledge Base document | Full 28-node n8n workflow |
+| Fixed reply templates & branding | AI Brain 1 & 2 logic |
+| Page Access Token | Message filtering & routing |
+| Admin Messenger recipient ID | Human handoff / auto-resume system |
+| Handoff-tracking Sheet | — |
+
+**One workflow → infinite deployments.** This is the foundation of [AutomateIQ Labs](https://www.facebook.com/automateiq.labs/)' white-label AI automation service.
+
+---
+
+## 📊 Capacity & Performance
+
+| Metric | Result |
+|---|---|
+| 💬 Response latency | Sub-5 seconds from message receipt to delivery |
+| 🔁 AI requests/day | Thousands — well within Gemini + Groq free tier combined |
+| 💰 Monthly operating cost | **$0** — fully within free-tier limits |
+| 🌐 Languages supported | Bangla + English (auto-detected per message) |
+| 📋 Workflow nodes | 28 nodes across 7 layers |
+| ✅ Live status | Production — tested against real-world conversation scenarios |
+
+---
+
+## 🔒 Why No Source Code Is Public
+
+> 📌 **This is a documentation / case-study repository.**
+
+The n8n workflow JSON, AI system prompts, and knowledge base structure are **proprietary commercial IP** of [AutomateIQ Labs](https://www.facebook.com/automateiq.labs/). They are not open-sourced.
+
+What you'll find here:
+- ✅ Full system architecture & decision logic
+- ✅ Live demo videos
+- ✅ Tech stack & performance data
+- ✅ White-label deployment model
+- ❌ Workflow JSON export
+- ❌ AI system prompts
+
+If you're a business owner or agency interested in this AI Messenger automation system for your own Facebook Page, [reach out below](#-connect).
+
+---
+
+## ❓ FAQ
+
+**What AI models power this bot?**
+Google Gemini 2.5 Flash (primary) with Groq Llama 3.3 70B as automatic fallback — so the bot never goes silent if one provider rate-limits.
+
+**How does the bot decide when to escalate?**
+A second AI agent (Brain 2) reads the full conversation after every exchange and outputs a structured JSON decision — `NOTIFY_ADMIN`, `MONITOR`, or `NO_ACTION` — independently of the reply agent.
+
+**What happens after escalation?**
+Admin gets a Messenger alert with a 24-hour deadline. The AI pauses for that user. If the admin doesn't reply within 24h, the AI automatically resumes.
+
+**Can this be adapted for other businesses?**
+Yes — white-label template. Only the knowledge base, branding, and admin contact change. The workflow and AI logic stay the same.
+
+**Does it support languages other than English?**
+Yes — auto-detects Bangla and English per message, replies in the customer's language with zero manual configuration.
+
+**What automation platform is this built on?**
+[n8n](https://n8n.io), self-hosted via Docker on AWS EC2, using a 28-node pipeline connected to Meta Graph API, Gemini, Groq, Google Docs, and Google Sheets.
+
+---
+
+## 🤝 Connect
+
+**Interested in a custom AI Messenger Bot for your Facebook Page?**
+
+**Muhammad Antor** — AI Automation Engineer | Founder, AutomateIQ Labs 🇧🇩
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/muhammad-antor)
+[![Facebook](https://img.shields.io/badge/AutomateIQ_Labs-Follow-1877F2?style=for-the-badge&logo=facebook)](https://www.facebook.com/automateiq.labs/)
+[![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/automateiq.labs/)
+[![Email](https://img.shields.io/badge/Email-Hire_Me-EA4335?style=for-the-badge&logo=gmail)](mailto:muhammadantor71@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/muhammadantor)
+
+---
+
+<div align="center">
+
+*Built with ❤️ by [AutomateIQ Labs](https://www.facebook.com/automateiq.labs/) · Bangladesh*
+
+*"Automate Smarter with AI"*
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
+
+</div>
+
+<!--
+SEO Keywords: n8n Facebook Messenger bot, AI chatbot n8n, Facebook page automation n8n,
+Gemini AI chatbot, Groq Llama chatbot, AI customer support bot, human handoff chatbot n8n,
+Facebook Graph API automation, bilingual chatbot Bangla English, n8n AI agent workflow,
+messenger bot automation Bangladesh, AutomateIQ Labs, conversational AI n8n,
+white-label chatbot automation, AI messenger automation freelancer Bangladesh
+-->
